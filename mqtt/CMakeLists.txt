@@ -56,14 +56,6 @@ if (MSVC)
 
   else()
     message("build shared")
-    add_library(CURL SHARED IMPORTED)
-    set_target_properties(CURL PROPERTIES # This need to be full path in windows
-      IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/../3rd/libcurl-vc-x64-release-dll-ipv6-sspi-schannel/bin/libcurl.dll"
-      IMPORTED_IMPLIB "${CMAKE_CURRENT_SOURCE_DIR}/../3rd/libcurl-vc-x64-release-dll-ipv6-sspi-schannel/lib/libcurl.lib"
-      INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/../3rd/libcurl-vc-x64-release-dll-ipv6-sspi-schannel/include/"
-      )
-    # copy dll to binary folder
-    configure_file(${CMAKE_CURRENT_SOURCE_DIR}/../3rd/libcurl-vc-x64-release-dll-ipv6-sspi-schannel/bin/libcurl.dll Release/libcurl.dll COPYONLY)
   endif(BUILD_STATIC)
 
   file(GLOB APP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/*.cc)

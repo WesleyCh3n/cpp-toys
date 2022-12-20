@@ -2,10 +2,13 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 )
+
+var i = 0
 
 func main() {
 	app := fiber.New()
@@ -27,7 +30,9 @@ func main() {
 		if err != nil {
 			return err
 		}
-		c.SaveFile(file, fmt.Sprintf("./%s", file.Filename))
+		i += 1
+		c.SaveFile(file, fmt.Sprintf("./%d-%s", i, file.Filename))
+		os.Remove(fmt.Sprintf("./%d-%s", i, file.Filename))
 		// fmt.Println(string(c.Body()))
 		return nil
 	})

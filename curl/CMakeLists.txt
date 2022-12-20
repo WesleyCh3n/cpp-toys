@@ -42,7 +42,7 @@ if (MSVC)
       IMPORTED_LOCATION "${CMAKE_CURRENT_SOURCE_DIR}/3rd/libcurl-vc-x64-release-static-ipv6-sspi-schannel/lib/libcurl_a.lib"
       INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/3rd/libcurl-vc-x64-release-static-ipv6-sspi-schannel/include/"
       )
-    set(CURL_LDFLAGS "Ws2_32 Normaliz Crypt32 Wldap32") # only static need extra flags
+    set(CURL_LDFLAGS Ws2_32 Normaliz Crypt32 Wldap32) # only static need extra flags
 
   else()
     message("build shared")
