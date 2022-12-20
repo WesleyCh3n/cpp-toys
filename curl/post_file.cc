@@ -1,29 +1,15 @@
-#include <curl/curl.h>
+#include <chrono>
 #include <iostream>
 
-class Timer {
-public:
-  Timer() { stTimePt_ = std::chrono::high_resolution_clock::now(); }
-  ~Timer() { Stop(); }
-  void Stop() {
-    auto endTimePt = std::chrono::high_resolution_clock::now();
-    auto start =
-        std::chrono::time_point_cast<std::chrono::microseconds>(stTimePt_)
-            .time_since_epoch()
-            .count();
-    auto end =
-        std::chrono::time_point_cast<std::chrono::microseconds>(endTimePt)
-            .time_since_epoch()
-            .count();
-    auto duration = end - start;
-    std::cout << "take " << duration << "us (" << duration * 0.001 << "ms)\n";
-  }
+#include <curl/curl.h>
 
-private:
-  std::chrono::time_point<std::chrono::high_resolution_clock> stTimePt_;
-};
+#include "../Timer.h"
 
 int main(int argc, char *argv[]) {
+  if (argc < 2) {
+    std::cerr << "Usage: post_file <file path>\n";
+    return 1;
+  }
   CURL *curl;
 
   CURLM *multi_handle;

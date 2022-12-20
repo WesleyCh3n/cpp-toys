@@ -23,11 +23,11 @@ func main() {
 
 	app.Post("/upload", func(c *fiber.Ctx) error {
 		// Get raw body from POST request:
-		_, err := c.FormFile("sendfile")
+		file, err := c.FormFile("sendfile")
 		if err != nil {
 			return err
 		}
-		// c.SaveFile(file, fmt.Sprintf("./%s", file.Filename))
+		c.SaveFile(file, fmt.Sprintf("./%s", file.Filename))
 		// fmt.Println(string(c.Body()))
 		return nil
 	})
