@@ -44,6 +44,9 @@ if (MSVC)
   add_executable(curl_send ./curl_send.cc)
   target_link_libraries(curl_send CURL ${CURL_LDFLAGS})
 
+  add_executable(curl_send_buffer ./curl_send_buffer.cc)
+  target_link_libraries(curl_send_buffer CURL ${CURL_LDFLAGS} OPENCV)
+
   include_directories("../3rd/cppcodec")
 
   add_executable(mqtt_pub ./mqtt_pub.cc)
